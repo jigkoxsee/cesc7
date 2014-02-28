@@ -1,0 +1,322 @@
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-width : 320px)
+and (max-width : 480px) {
+}
+ 
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 321px) {
+	
+
+}
+ 
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 320px) {
+	.desktop {
+		display:none;
+	}
+	#marioIsland{
+        margin-top: 10% !important;	   
+ 		left: 0% !important;
+		width: 50% !important;
+	}
+	#wormIsland {
+        margin-top: 10% !important;	   
+ 		left: 0% !important;
+		width: 50% !important;
+	}
+}
+ 
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+and (min-width : 768px)
+and (max-width : 1024px) {
+    .desktop {
+		display:none;
+	}
+	#marioIsland{
+        margin-top: 10% !important;
+		left: 10% !important;
+		width: 50% !important;
+	}
+	
+	#wormIsland {
+        margin-top: 10% !important;	   
+ 		left: 0% !important;
+		width: 50% !important;
+	}
+}
+ 
+/* iPads (landscape) ----------- */
+@media only screen
+and (min-width : 768px)
+and (max-width : 1024px)
+and (orientation : landscape) {
+}
+ 
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-width : 768px)
+and (max-width : 1024px)
+and (orientation : portrait) {
+}
+ 
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+	.mobile{
+		display:none;
+	}
+}
+ 
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+}
+ 
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+	
+}
+
+
+@font-face {
+    font-family: 'WDB_Bangna';
+    src: url('font/WDB_Bangna.eot');
+    src: url('font/WDB_Bangna.eot?#iefix') format('embedded-opentype'),
+         url('font/WDB_Bangna.woff') format('woff'),
+         url('font/WDB_Bangna.ttf') format('truetype'),
+         url('font/WDB_Bangna.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+html,body{
+	font-family: 'WDB_Bangna';
+    font-size:3vmin;
+	background-color:#a3d4f0;
+}
+	
+.blockText{
+ background-color:white;
+ border-style:solid;
+ border-color:black;
+ box-shadow: 5px 5px 5px #888888;
+}
+
+.navigation li{
+ text-align:center !important	;
+ color:#000000;
+ display:block;
+ padding: 0 10px;
+ line-height: 30px;
+ margin-bottom:2px;
+ font-weight:bold;
+ -webkit-transition: all .1s ease-in-out;
+ text-align:left;
+ width:150px;
+}
+
+.network {
+	
+}
+
+.robot {
+}
+
+a {
+ color:black;
+}
+.navigation {
+	 box-shadow: 5px 5px 5px #888888 !important;
+	 border-style:solid !important;
+	 border-color:black !important;
+	 border-width: 5px !important;
+}
+
+li.active {
+	color:white;
+}
+
+.navigation li:hover,.active{
+  background-color:#888888;
+  cursor:pointer;
+  color:white;
+  width:150px!important;
+}
+
+#move { /*this change form navigaiton class*/
+  z-index:1;
+  position:fixed;
+  margin-left:1%;
+  top:20px;
+  background-color:white;
+}
+
+.cescLogo{
+ position:absolute;
+ left:37%;
+ width:30%;
+ height:15%;
+ z-index:1;
+}
+
+.point {
+ z-index:9;
+}
+
+.slide{
+ position: relative;
+ background-attachment: fixed;
+ width:100%;
+ height:700px;
+ position:relative;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(44, 62, 80,1.0); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(52, 73, 94,1.0); 
+}
+
+/*==================================== Object CSS =====================================================================*/
+
+#marioIsland{
+	width: 65%;
+    z-index:1;
+	position:absolute;
+	left:10%;
+}
+
+#cloudBack {
+	z-index:-1;
+	position:absolute;
+	left:20%;
+	
+}
+
+#cloudFront {
+   left:50%;
+   bottom:0px;
+   width:50%;
+	z-index:2;
+	position:absolute;
+}
+
+#logo {
+	position:absolute;
+	width:50%;
+	top : 10%;
+	left : 50%;
+}
+
+#wormIsland {
+	z-index:1;
+	position: absolute;
+	left:50%;
+	top:40%;
+	width:50%;
+}
+
+#map  {
+ z-index:1;
+  background-image:url(../images/map.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 600px;
+}
+
+#wrapperMap {
+	z-index:3;
+	position:absolute;
+	top:8%;	
+	left:10%;
+	width:100%;
+}
+
+#comprass {
+    z-index:2;
+	right:0px;
+	position: absolute;
+	-webkit-animation:spin 10s linear infinite;
+    -moz-animation:spin 10s linear infinite;
+    animation:spin 10s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+#openBox {
+	z-index:4;
+	position:absolute;
+}
+
+#kirbyDoor  {
+ z-index:1;
+  background-image:url(../images/bg5stardoor.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 900px;
+  bottom:10%;
+}
+
+#wrapperKirby {
+	z-index:3;
+	position:absolute;
+	top:30%;
+	width: 100%;
+	bottom:10%;
+	left:10%;
+}
+
+
+#question{
+    color:white;
+    height:100%;
+	width:80%;
+    top:175px;
+    overflow:auto;
+}
+
+#pacmanWrapper {
+	position:absolute;
+}
+
+#pacman{
+	z-index:1;
+	position:absolute;
+	width:15%;
+}
+
+.dot {
+	position:absolute;
+	width:3%;
+	left:30%;
+	margin-top:7%
+}
+
+.flipped {
+    transform: scale(-1, 1);
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -khtml-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+}

@@ -1,0 +1,270 @@
+@charset "utf-8";
+
+html,body{
+	font-family: 'WDB_Bangna';
+    font-size:3vmin;
+    background-image:(../images/bg5.png);
+	background-size: auto 100%;
+    background-color:#a3d4f0;
+
+}
+
+
+
+#sat{
+ position:absolute;
+ display:block;
+ background-image:url(../images/bg3kirby.png);
+ background-size: contain;
+ height: 290px;
+ width: 320px;
+ background-repeat:no-repeat;
+}
+
+@font-face {
+    font-family: 'WDB_Bangna';
+    src: url('font/WDB_Bangna.eot');
+    src: url('font/WDB_Bangna.eot?#iefix') format('embedded-opentype'),
+         url('font/WDB_Bangna.woff') format('woff'),
+         url('font/WDB_Bangna.ttf') format('truetype'),
+         url('font/WDB_Bangna.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+#move { /*this change form navigaiton class*/
+  z-index:1;
+  position:fixed;
+  margin-left:1%;
+  top:20px;
+  background-color:white;
+
+}
+
+#register{
+  z-index:1;
+  position:absolute;
+  top:20%;
+  left:40%;
+  font-size:30px;
+}
+
+
+.blockText{
+ background-color:white;
+ border-style:solid;
+ border-color:#888888;
+ box-shadow: 5px 5px 5px #888888;
+}
+
+
+
+.navigation li{
+ color:#000000;
+ display:block;
+ padding: 0 10px;
+ line-height: 30px;
+ margin-bottom:2px;
+ font-weight:bold;
+ -webkit-transition: all .2s ease-in-out;
+ text-align:left;
+ width:150px;
+}
+
+.navigation li:hover,.active{
+  background-color:#888888;
+  font-size:22px;
+  cursor:pointer;
+  width:150px!important;
+}
+
+.cescLogo{
+ position:absolute;
+ left:37%;
+ width:30%;
+ height:15%;
+ z-index:1;
+}
+
+.slide{
+ background-attachment: fixed;
+ width:100%;
+ height:1500px;
+ position:relative;
+}
+.wrapper{
+	width:100%;
+	height:2000px;
+	margin:0 auto;
+	position:relative;
+}
+
+.button{
+	display:block;
+	width:50px;
+	height:50px;
+	position:absolute;
+	bottom:0px;
+	left:50%;
+	background-color:#000000;
+	background-image:url(../images/arrow.png);
+}
+.button:hover{
+	background-color:#494949;
+	cursor:pointer;
+}
+
+/******************************
+ SLIDE 1 
+*******************************/
+
+#slide1 img{
+    width:10%;
+    height:5%;
+}
+
+
+
+#slide1 img:first-child{
+	position:absolute;
+top: 100px;
+left: 150px;
+}
+#slide1 img:nth-child(2){
+	position:absolute;
+	top:270px;
+	left:423px;
+}
+
+#slide1 img:nth-child(3){
+	position:absolute;
+	top:100px;
+	left:320px;
+}
+#slide1 img:nth-child(4){
+	position:absolute;
+	top:300px;
+	left:100px;
+}
+#slide1 img:nth-child(5){
+	position:absolute;
+	top:300px;
+	right:330px;
+}
+#slide1 img:nth-child(6){
+	position:absolute;
+	top:300px;
+	right:120px;
+}
+#slide1 img:nth-child(7){
+	position:absolute;
+	top:100px;
+	right:340px;
+}
+
+#slide1 img:nth-child(8){
+	position:absolute;
+	top:300px;
+	right:900px;
+}
+
+/******************************
+ SLIDE 2 
+*******************************/
+#slide2{
+}
+/******************************
+ SLIDE 3 
+*******************************/
+
+#slide3 img:first-child{
+	position:absolute;
+top: 600px;
+left: 200px;
+}
+#slide3 img:nth-child(2){
+	position:absolute;
+	top:100px;
+	left:100px;
+}
+#slide3 img:nth-child(3){
+	position:absolute;
+	top:40px;
+	left:300px;
+}
+#slide3 img:nth-child(4){
+	position:absolute;
+	top:200px;
+	left:300px;
+}
+#slide3 img:nth-child(5){
+	position:absolute;
+	top:200px;
+	right:300px;
+}
+#slide3 img:nth-child(6){
+	position:absolute;
+	top:100px;
+	right:300px;
+}
+/*slide 4 *************************/
+#slide4{
+
+  background-size:100% 2000px;
+  background-repeat:no-repeat;
+}
+
+
+
+
+/*** slide 5 ************************
+*/
+#slide5{
+ 
+   background-size:100% 2000px;
+  background-repeat:no-repeat;
+}
+
+.breadcrumbs{
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 10px;
+}
+
+#question{
+    color:white;
+    height:530px;
+    top:175px;
+    overflow:auto;
+}
+
+/* ScrollBar decorate */
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(44, 62, 80,1.0); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(52, 73, 94,1.0); 
+}
+
+#slide6{
+
+   background-size:100% 2000px;
+  background-repeat:no-repeat;
+}

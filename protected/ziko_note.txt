@@ -1,0 +1,6 @@
+ใช้ สำหรับส่งเมล์ ให้ใส่ใน trl
+<?php Email::sendGmail("CE Smart Camp7","cesmartcamp7@gmail.com",
+                      "CE Smart Camp7",
+                      Yii::app()->session['fbeauth']['email'],
+                      "email of cesc7 test",
+                      "test ja ja ja"); ?>
