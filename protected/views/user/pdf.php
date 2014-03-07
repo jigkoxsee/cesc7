@@ -18,7 +18,7 @@ $this->header="User # ".Yii::app()->user->name;
     <table style="width: 100%;">
         <tr>
             <td style="text-align: center;">
-                <img src="http://ziko.kmi.tl/cesc7/images/cesc_origin.jpg" class="img-circle"  height="100" width="100" style="">
+                <img src="http://ziko.kmi.tl/cesc7/images/logoCE.png" class="img-circle"  height="100" width="100" style="">
             </td>
             <td style="text-align: center;">
                 <h1 style="font-size:3.8em; font-weight:bold;">CE Smart Camp #7</h1>
@@ -30,37 +30,13 @@ $this->header="User # ".Yii::app()->user->name;
     <h4 style="margin-left:20%; margin-top:-5px; font-weight:bold;">ใบสมัครเข้าร่วมโครงการ CE Smart Camp #7</h4>
     <h5><u><b>ข้อมูลส่วนตัว</b></u></h5>
     <div style="padding-left:5%;">
-<!--<table style="width:100%;">
-    <tr   style="margin-bottom:50px;">
-        <td height:"50px" width="25%" style="border:1px solid black" colspan="2"><p>เลขประจำตัวประชาชน:</p></td>
-        <td height:"50px" width="49.5%" style="border-bottom:2px dotted black; height:1px;"></td>
-        <td height:"50px" width="25.5%" rowspan="5" style="border:1px solid black">test</td>
-    </tr>
-	<tr>
-		<td> </td>
-	</tr>
-	<tr>
-		<td> </td>
-	</tr>
-	<tr>
-        <td width="9%" style="border:1px solid black"><p style="margin:50px;">ชื่อ-นามสกุล</p></td>
-        <td width="11%" style="border:2px dotted black"></td>
-        <td width="54.5%" align="center" style="border-bottom:2px dotted black; height:1px;"> <?php echo $model->surname?> </td>
-     </tr>
-	 <tr>
-        <td style="border:1px solid black"><p style="margin:50px;">ชื่อเล่น</p></td>
-        <td width="" style="border:2px dotted black"></td>
-		<td width="20px" style="border:1px solid black"><p style="margin:50px;">วัน/เดือน/ปี เกิด</p></td>
-        <td width="" style="border:2px dotted black"></td>
-     </tr>
-
-</table> -->
 <table border="" style="width:100%;">
 	<tr>
 		<td style="height:0.9cm; vertical-align:bottom; font-size:14px;" colspan="5">เลขประจำตัวประชาชน:</td>
 		<td colspan="4" style="border-bottom:dotted 2px black;"><?php echo $model->thai_id?></td>
 		<td width="1%"></td>
 		<td style="width:4cm; height:5.23cm; border:1px solid black;" rowspan="5" align="center">
+            <!-- <img src="www.cesmartcamp.com/index.php?r=user/showimage&filename=<?php echo $model->student_pic; ?>" style="width:4cm; height:5.23cm;"/> -->
                     <p style="font-size:1.1em;">ติดรูปถ่ายขนาด 2 น้ิว</p>
                 <br/>
                 <br/>
@@ -161,7 +137,7 @@ $this->header="User # ".Yii::app()->user->name;
  </tr>
 </table>
 
-<h5  style="padding-top:5px;"><u><b>ข้อมูลผู้ปกครอง(สามารถติดต่อได้ในกรณีฉุกเฉิน)</b></u></h5>
+<h5  style="padding-top:5px; padding-left:-26px"><u><b>ข้อมูลผู้ปกครอง(สามารถติดต่อได้ในกรณีฉุกเฉิน)</b></u></h5>
 <table style="width:100%; margin-top:10px;">
  <tr height="0.8cm">
 	<td style="font-size:14px; width:15%; vertical-align:bottom;">ชื่อ-นามสกุล:</td>
@@ -178,7 +154,7 @@ $this->header="User # ".Yii::app()->user->name;
 </table>
 
 
-<h5 style="padding-top:5px;"><u><b>ข้อมูลการศึกษา</b></u></h5>
+<h5 style="padding-top:5px; padding-left:-26px"><u><b>ข้อมูลการศึกษา</b></u></h5>
 
 <table style="width:100%; margin-top:5px;">
  <tr height="0.8cm">
@@ -198,53 +174,150 @@ $this->header="User # ".Yii::app()->user->name;
  </tr>
 </table>
 
-<h5 style="padding-top:5px;"><u><b>การเข้าอบรม</b></u></h5>
+<h5 style="padding-top:5px; padding-left:-26px;"><u><b>การเข้าอบรม</b></u></h5>
 <table style="width:100%; margin-top:5px;">
  <tr height="0.8cm">
-	<td style="font-size:14px; width:7%; vertical-align:bottom;">ด้าน:</td>
+	<td style="font-size:14px; width:7%; vertical-align:bottom;">สาขา:</td>
 	<td align="center" style="font-size:14px; width:93%; vertical-align:bottom; border-bottom:dotted 2px black;"><?php echo $model->camp?></u></td>
  </tr>
 </table>
 
-<h5 style="padding-top:5px;"><u><b>การสมัครเข้าร่วมหรือสมัครค่ายหรือสมัครค่ายฝึกอบรมทางวิชาการอื่นๆ</b></u></h5>
+<h5 style="padding-top:5px; padding-left:-26px;"><u><b>การสมัครเข้าร่วมหรือสมัครค่ายหรือสมัครค่ายฝึกอบรมทางวิชาการอื่นๆ</b></u></h5>
 <table style="width:100%; margin-top:5px;">
  <tr height="1cm" style="margin-top:5px;">
-	<td style="font-size:14px; width:3%; vertical-align:bottom; border:solid 1px black;"></td>
-	<td style="font-size:14px; width:47%; vertical-align:bottom;">  &nbsp;ไม่เคยเข้าฝึกอบรม</u></td>
-    <td style="font-size:14px; width:3%; vertical-align:bottom; border:solid 1px black;"></td>
+    <td style="font-size:14px; width:3%; vertical-align:bottom; border:solid 1px black;"><?php if( $model->camp1!="" || $model->camp2!="" || $model->camp3!=""){ echo("&#10003;");} ?></td>
 	<td style="font-size:14px; width:47%; vertical-align:bottom;"> เคยเข้าฝึกอบรม</u></td>
+    <td style="font-size:14px; width:3%; vertical-align:bottom; border:solid 1px black;"><?php if( $model->camp1=="" && $model->camp2=="" && $model->camp3==""){ echo("&#10003;");} ?></td>
+    <td style="font-size:14px; width:47%; vertical-align:bottom;">  &nbsp;ไม่เคยเข้าฝึกอบรม</u></td>
  </tr>
 </table>
 
 <table style="width:100%; margin-top:5px;">
  <tr height="1cm" style="margin-top:5px;">
 	<td style="font-size:16px; width:7%; vertical-align:bottom;">1.ค่าย</td>
-	<td align="center" style="font-size:16px; width:40%; vertical-align:bottom; border-bottom:dotted 2px black;"></u></td>
+	<td align="center" style="font-size:16px; width:40%; vertical-align:bottom; border-bottom:dotted 2px black;"><?php echo $model->camp1?></td>
     <td style="font-size:16px; width:10%; vertical-align:bottom;">สถาบัน/มหาวิทยาลัย</td>
-	<td align="center" style="font-size:14px; width:43%; vertical-align:bottom; border-bottom:dotted 2px black;"></u></td>	
+	<td align="center" style="font-size:14px; width:43%; vertical-align:bottom; border-bottom:dotted 2px black;"><?php echo $model->camp1_uni?></td>	
  </tr>
 </table>
 <table style="width:100%; margin-top:5px;">
  <tr height="1cm" style="margin-top:5px;">
 	<td style="font-size:16px; width:7%; vertical-align:bottom;">2.ค่าย</td>
-	<td align="center" style="font-size:16px; width:40%; vertical-align:bottom; border-bottom:dotted 2px black;"></u></td>
+	<td align="center" style="font-size:16px; width:40%; vertical-align:bottom; border-bottom:dotted 2px black;"><?php echo $model->camp2?></td>
     <td style="font-size:16px; width:10%; vertical-align:bottom;">สถาบัน/มหาวิทยาลัย</td>
-	<td align="center" style="font-size:14px; width:43%; vertical-align:bottom; border-bottom:dotted 2px black;"></u></td>	
+	<td align="center" style="font-size:14px; width:43%; vertical-align:bottom; border-bottom:dotted 2px black;"><?php echo $model->camp2_uni?></td>	
  </tr>
 </table>
 <table style="width:100%; margin-top:5px;">
  <tr height="1cm" style="margin-top:5px;">
 	<td style="font-size:16px; width:7%; vertical-align:bottom;">3.ค่าย</td>
-	<td align="center" style="font-size:16px; width:40%; vertical-align:bottom; border-bottom:dotted 2px black;"></u></td>
+	<td align="center" style="font-size:16px; width:40%; vertical-align:bottom; border-bottom:dotted 2px black;"><?php echo $model->camp3?></td>
     <td style="font-size:16px; width:10%; vertical-align:bottom;">สถาบัน/มหาวิทยาลัย</td>
-	<td align="center" style="font-size:14px; width:43%; vertical-align:bottom; border-bottom:dotted 2px black;"></u></td>	
+	<td align="center" style="font-size:14px; width:43%; vertical-align:bottom; border-bottom:dotted 2px black;"><?php echo $model->camp3_uni?></td>	
  </tr>
 </table>
-<table style="width:100%; margin-top:13px;">
+<!-- <table style="width:100%; margin-top:13px;">
  <tr height="1cm" style="margin-top:5px;">
-	<td style="font-size:14px; width:7%; vertical-align:bottom;">ข้าพเจ้ามีความประสงค์ที่จะสมัครเข้าร่วมกิจกรรม ยินดีที่จะปฏิบัติตามกฎของค่ายอย่างเคร่งครัด</td>
+	<td style="color:white; font-size:14px; width:7%; vertical-align:bottom;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
  </tr>
   <tr height="1cm" style="margin-top:5px;">
-	<td style="font-size:14px; width:7%; vertical-align:bottom;">และขอรับรองว่าข้อมูลทั้งหมดเป็นความจริงทุกประการ</td>
+	<td style="color:white; font-size:14px; width:7%; vertical-align:bottom;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
  </tr>
+</table> -->
+</div>
+</div>
+</div>
+<!--
+</br>
+</br>
+<div style="padding-top:-8%; padding-left:5%; padding-right:5%;">
+    <table style="width: 100%; padding:5%;" align="right">
+        <tr>
+            <td width="82%"></td>
+            <td width="18%" style="border:1px solid black; padding:1%;" align="left" colspan="2">No.  .................</td>
+        </tr>
+    </table>
+<div style="padding-left:6%; padding-right:6%;">
+    <table style="width: 100%;">
+        <tr>
+            <td style="text-align: center;">
+                <img src="http://ziko.kmi.tl/cesc7/images/logoCE.png" class="img-circle"  height="100" width="100" style="">
+            </td>
+            <td style="text-align: center;">
+                <h1 style="font-size:3.8em; font-weight:bold;">CE Smart Camp #7</h1>
+                <span style="font-size:0.8em;" >Computer Engineering at King Mongkut's Institute of Technology Ladkrabang</span>
+            </td>
+        </tr>
+    </table>
+    <hr/>
+    <h4 style="margin-left:20%; margin-top:-5px; font-weight:bold;">ใบสมัครเข้าร่วมโครงการ CE Smart Camp #7</h4>
+    <h5><u><b>สำหรับผู้ปกครอง</b></u></h5>
+    <div style="padding-left:5%;">
+<table border="" style="width:100%;">
+	<tr>
+            <td style="height:0.8cm;  vertical-align:bottom; font-size:15px; width:8%;">ข้าพเจ้า</td>
+            <td style="height:0.8cm; vertical-align:bottom; width:3%; border-bottom:dotted 2px black;"> </td>
+            <td style="border-bottom:dotted 2px black; width:50%;"></td>
+            <td style="border-bottom:dotted 2px black; width:18%;"></td>
+            <td style="border-bottom:dotted 2px black; width:22%;"></td>
+	</tr>
+        <tr>
+            <td style="height:0.8cm;  vertical-align:bottom; font-size:15px;" colspan="2">ผู้ปกครองของ</td>
+            <td style="border-bottom:dotted 2px black; "></td>
+            <td style="vertical-align:bottom; font-size:15px;">โดยเกี่ยวข้องเป็น</td>
+            <td style="border-bottom:dotted 2px black;"></td>
+	</tr>
 </table>
+<table>
+    <tr>
+        <td style="height:0.8cm; vertical-align:bottom; font-size:14px; width:100%;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ได้ทราบรายละเอียดของโครงการค่าย CE Smart Camp ครั้งที่ 7 ของสาขาวิชาวิศวกรรม</td>
+    </tr>
+    <tr>
+        <td style="height:0.8cm; vertical-align:bottom; font-size:14px; width:100%;">คอมพิวเตอร์ สถาบันเทคโนโลยีพระจอมเกล้าเจ้าคุณทหารลาดกระบัง และอนุญาติให้ผู้สมัครเข้าร่วม</td>
+    </tr>
+    <tr>
+        <td style="height:0.8cm; vertical-align:bottom; font-size:14px; width:100%;">กิจกรรมทางค่าย ซึ่งทางค่ายจะไม่อนุญาติให้มีการออกจากค่ายตลอดระยะเวลา 6 วัน 5 คืน ระหว่าง</td>
+    </tr>
+    <tr>
+        <td style="height:0.8cm; vertical-align:bottom; font-size:14px; width:100%;">ระหว่างวันที่ 22-27 เมษายน 2557 และให้ช่วยดูแลเป็นพิเศษในเรื่อง.............................................</td>
+
+    </tr>
+    <tr>
+        <td style="height:0.8cm; vertical-align:bottom; font-size:14px; width:100%;"><?php for($i=0;$i<=145;$i++){echo('.');}?></td>
+    </tr>
+    <tr>
+        <td style="height:0.8cm; vertical-align:bottom; font-size:14px; width:100%;"><?php for($i=0;$i<=145;$i++){echo('.');}?></td>
+    </tr>
+    <tr>
+        <td style="height:0.8cm; vertical-align:bottom; font-size:14px; width:100%;"><?php for($i=0;$i<=145;$i++){echo('.');}?></td>
+    </tr>
+</table>
+</br>
+</br>
+</br>
+<table width="100%">
+    <tr>
+        <td style="height:0.8cm; vertical-align:bottom; fontsize:15px; width:50%;"></td>
+        <td style="height:0.8cm; vertical-align:bottom; fontsize:15px; width:18%;">ลงนามผู้ปกครอง</td>
+        <td style="height:0.8cm; vertical-align:bottom; fontsize:15px; width:32%; border-bottom:dotted 2px black;"></td>
+    </tr>
+</table>
+<table width="100%">
+    <tr>
+        <td style="height:0.8cm; vertical-align:bottom; fontsize:15px; width:61%;"></td>
+        <td style="height:0.8cm; vertical-align:bottom; fontsize:15px; width:1%;">(</td>
+        <td style="height:0.8cm; vertical-align:bottom; fontsize:15px; width:37%; border-bottom:dotted 2px black;"></td>
+        <td style="height:0.8cm; vertical-align:bottom; fontsize:15px; width:1%;">)</td>
+    </tr>
+</table>
+<table width="100%">
+    <tr>
+        <td style="height:0.8cm; vertical-align:bottom; fontsize:15px; width:53%;"></td>
+        <td style="height:0.8cm; vertical-align:bottom; fontsize:15px; width:46%;">วันที่............เดือน.......................ปี..................</td>
+    </tr>
+</table>
+
+</div>
+</div>
+</div>
+-->

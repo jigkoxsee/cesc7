@@ -5,6 +5,17 @@ class SiteController extends Controller
 	/**
 	 * Declares class-based actions.
 	 */
+	/*public function filters()
+    {
+        return array(
+            array(
+                'COutputCache',
+                'duration'=>1000,
+                'varyByParam'=>array('id'),
+            ),
+        );
+    }*/
+
 	public function actions()
 	{
 		return array(
@@ -29,6 +40,8 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
+
+        $this->layout='main';
 		$this->render('index');
 	}
 
@@ -37,7 +50,7 @@ class SiteController extends Controller
 	 */
 	public function actionError()
 	{
-        $this->layout='column2';
+        $this->layout='column0';
 		if($error=Yii::app()->errorHandler->error)
 		{
 			if(Yii::app()->request->isAjaxRequest)
@@ -50,101 +63,86 @@ class SiteController extends Controller
 	/**
 	 * Displays the contact page
 	 */
-	public function actionContact()
-	{
-        $this->layout='column2';
-		$model=new ContactForm;
-		if(isset($_POST['ContactForm']))
-		{
-			$model->attributes=$_POST['ContactForm'];
-			if($model->validate())
-			{
-				$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
-				$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
-				$headers="From: $name <{$model->email}>\r\n".
-					"Reply-To: {$model->email}\r\n".
-					"MIME-Version: 1.0\r\n".
-					"Content-Type: text/plain; charset=UTF-8";
+	// public function actionContact()
+	// {
+ //        $this->layout='column0';
+	// 	$model=new ContactForm;
+	// 	if(isset($_POST['ContactForm']))
+	// 	{
+	// 		$model->attributes=$_POST['ContactForm'];
+	// 		if($model->validate())
+	// 		{
+	// 			$name='=?UTF-8?B?'.base64_encode($model->name).'?=';
+	// 			$subject='=?UTF-8?B?'.base64_encode($model->subject).'?=';
+	// 			$headers="From: $name <{$model->email}>\r\n".
+	// 				"Reply-To: {$model->email}\r\n".
+	// 				"MIME-Version: 1.0\r\n".
+	// 				"Content-Type: text/plain; charset=UTF-8";
 
-				mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
-				$this->refresh();
-			}
-		}
-		$this->render('contact',array('model'=>$model));
-	}
+	// 			mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
+	// 			Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+	// 			$this->refresh();
+	// 		}
+	// 	}
+	// 	$this->render('contact',array('model'=>$model));
+	// }
 
 	/**
 	 * Displays the login page
 	 */
 	public function actionLogin()
 	{
-
-        $serviceName = Yii::app()->request->getQuery('service');
-        if (isset($serviceName)) {
-            /** @var $eauth EAuthServiceBase */
-            $eauth = Yii::app()->eauth->getIdentity($serviceName);
-            //$eauth->getItemAttributes();
-
-
-            $eauth->redirectUrl = $this->createAbsoluteUrl('/user');
-            $eauth->cancelUrl = $this->createAbsoluteUrl('site/login');
-
-            try {
-                if ($eauth->authenticate()) {
-                    //var_dump($eauth->getIsAuthenticated(), $eauth->getAttributes());
-                    $identity = new EAuthUserIdentity($eauth);
-
-                    // successful authentication
-                    if ($identity->authenticate()) {
-                        Yii::app()->user->login($identity);
-                        //var_dump($identity->id, $identity->email, Yii::app()->user->id);exit;
-                         //var_dump($eauth->getIsAuthenticated(), $eauth->getAttributes());exit;
-                        //var_dump($identity);exit;
-                        Yii::app()->session['fbeauth'] = $eauth->getAttributes();
-                        // special redirect with closing popup window
-                       //$eauth->redirect();
-                        $this->redirect(array('/user'));
-                    }
-                    else {
-                        // close popup window and redirect to cancelUrl
-                        $eauth->cancel();
-                    }
-                }
-
-                // Something went wrong, redirect to login page
-                $this->redirect(array('site/login'));
-            }
-            catch (EAuthException $e) {
-                // save authentication error to session
-                Yii::app()->user->setFlash('error', 'EAuthException: '.$e->getMessage());
-
-                // close popup window and redirect to cancelUrl
-                $eauth->redirect($eauth->getCancelUrl());
-            }
-        }
-        $this->layout='column2';
-        $this->render('login',array());
-
-        /*$model=new LoginForm;
-
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+		if(Yii::app()->user->isGuest)
 		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
+	        $serviceName = Yii::app()->request->getQuery('service');
+	        if (isset($serviceName)) {
+	            /** @var $eauth EAuthServiceBase */
+	            $eauth = Yii::app()->eauth->getIdentity($serviceName);
+	            //$eauth->getItemAttributes();
 
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
-		// display the login form
-		$this->render('login',array('model'=>$model));*/
+
+	            $eauth->redirectUrl = $this->createAbsoluteUrl('/user');
+	            $eauth->cancelUrl = $this->createAbsoluteUrl('site/login');
+
+	            try {
+	                if ($eauth->authenticate()) {
+	                    //var_dump($eauth->getIsAuthenticated(), $eauth->getAttributes());
+	                    $identity = new EAuthUserIdentity($eauth);
+
+	                    // successful authentication
+	                    if ($identity->authenticate()) {
+	                        Yii::app()->user->login($identity);
+	                        //var_dump($identity->id, $identity->email, Yii::app()->user->id);exit;
+	                         //var_dump($eauth->getIsAuthenticated(), $eauth->getAttributes());exit;
+	                        //var_dump($identity);exit;
+	                        Yii::app()->session['fbeauth'] = $eauth->getAttributes();
+	                        // special redirect with closing popup window
+	                       //$eauth->redirect();
+	                        $this->redirect(array('/user'));
+	                    }
+	                    else {
+	                        // close popup window and redirect to cancelUrl
+	                        $eauth->cancel();
+	                    }
+	                }
+
+	                // Something went wrong, redirect to login page
+	                $this->redirect(array('site/login'));
+	            }
+	            catch (EAuthException $e) {
+	                // save authentication error to session
+	                Yii::app()->user->setFlash('error', 'EAuthException: '.$e->getMessage());
+
+	                // close popup window and redirect to cancelUrl
+	                $eauth->redirect($eauth->getCancelUrl());
+	            }
+	        }
+	        $this->layout='column0';
+	        $this->render('login',array());
+	    }else{
+	    	$this->redirect(array('/user'));
+	    }
+
 	}
 
 	/**

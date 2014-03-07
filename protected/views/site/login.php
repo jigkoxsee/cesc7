@@ -20,10 +20,10 @@ if (Yii::app()->user->hasFlash('error')) {
 //echo CHtml::link('Login',array('site/login','service'=>'facebook'));//height="42" width="42"
 ?>
 <div style="text-align: center">
-    <a href="http://ziko.kmi.tl/cesc7/index.php?r=site/login&service=facebook#">
-        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/facebook.png" alt="Smiley face" >
+    <a href="index.php?r=site/login&service=facebook#">
+        <img src="<?php echo Yii::app()->request->baseUrl; ?>/images/facebook.png" alt="Smiley face" style="width:225px">
     </a>
-    <div id="fb-root"></div>
+<!--     <div id="fb-root"></div>
     <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
@@ -31,6 +31,6 @@ if (Yii::app()->user->hasFlash('error')) {
             js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1449083385318999";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-    <div class="fb-login-button" data-max-rows="2" data-show-faces="true"></div>
+    <div class="fb-login-button" data-max-rows="2" data-show-faces="true"></div> -->
 </div>
 

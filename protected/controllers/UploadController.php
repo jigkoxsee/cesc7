@@ -6,7 +6,7 @@ class UploadController extends Controller
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout='//layouts/column2';
+    public $layout='//layouts/column1';
 
     /**
      * @return array action filters
@@ -63,20 +63,20 @@ class UploadController extends Controller
      */
     public function actionCreate()
     {
-        $model=new Upload;
+        $modelUp=new Upload;
 
         // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+        // $this->performAjaxValidation($modelUp);
 
         if(isset($_POST['Upload']))
         {
-            $model->attributes=$_POST['Upload'];
-            if($model->save())
-                $this->redirect(array('view','id'=>$model->id));
+            $modelUp->attributes=$_POST['Upload'];
+            if($modelUp->save())
+                $this->redirect(array('view','id'=>$modelUp->id));
         }
 
         $this->render('create',array(
-            'model'=>$model,
+            'model'=>$modelUp,
         ));
     }
 
@@ -87,23 +87,23 @@ class UploadController extends Controller
      */
     public function actionUpdate($id)
     {
-        $this->redirect(array('/user'));
-        /*
-        $model=$this->loadModel($id);
+        //$this->redirect(array('/user'));
+        
+        $modelUp=$this->loadModel($id);
 
         // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+        // $this->performAjaxValidation($modelUp);
 
         if(isset($_POST['Upload']))
         {
-            $model->attributes=$_POST['Upload'];
-            if($model->save())
-                $this->redirect(array('view','id'=>$model->id));
+            $modelUp->attributes=$_POST['Upload'];
+            //if($modelUp->save())
+            //    $this->redirect(array('view','id'=>$modelUp->id));
         }
 
         $this->render('update',array(
-            'model'=>$model,
-        ));*/
+            'model'=>$modelUp,
+        ));
     }
 
     /**
@@ -143,13 +143,13 @@ class UploadController extends Controller
     {
         $this->redirect(array('/user'));
         /*
-        $model=new Upload('search');
-        $model->unsetAttributes();  // clear any default values
+        $modelUp=new Upload('search');
+        $modelUp->unsetAttributes();  // clear any default values
         if(isset($_GET['Upload']))
-            $model->attributes=$_GET['Upload'];
+            $modelUp->attributes=$_GET['Upload'];
 
         $this->render('admin',array(
-            'model'=>$model,
+            'model'=>$modelUp,
         ));*/
     }
 
@@ -162,21 +162,21 @@ class UploadController extends Controller
      */
     public function loadModel($id)
     {
-        $model=Upload::model()->findByPk($id);
-        if($model===null)
+        $modelUp=Upload::model()->findByPk($id);
+        if($modelUp===null)
             throw new CHttpException(404,'The requested page does not exist.');
-        return $model;
+        return $modelUp;
     }
 
     /**
      * Performs the AJAX validation.
-     * @param Upload $model the model to be validated
+     * @param Upload $modelUp the model to be validated
      */
-    protected function performAjaxValidation($model)
+    protected function performAjaxValidation($modelUp)
     {
         if(isset($_POST['ajax']) && $_POST['ajax']==='upload-form')
         {
-            echo CActiveForm::validate($model);
+            echo CActiveForm::validate($modelUp);
             Yii::app()->end();
         }
     }
@@ -188,20 +188,79 @@ class UploadController extends Controller
         $dir = Yii::getPathOfAlias('application.uploads');
         $fileName = '';
         $uploaded = false;
-        $model2=User::model()->findByPk(Yii::app()->user->id);//load data into Model
-        $model=new Upload();
+        $mUpload=User::model()->findByPk(Yii::app()->user->id);//load data into Model
+        $modelUp=new Upload();
 
-        $this->performAjaxValidation($model);
+        $this->performAjaxValidation($modelUp);
         if(isset($_POST['Upload']))
         {
-            $model->attributes=$_POST['Upload'];
-            $file=CUploadedFile::getInstance($model,'file');
-            $new_name = Yii::app()->user->id.'_'.$des."_".time().".".$file->getExtensionName(); // newname คือชื่อใหม่ เปลี่ยนเป็นชื่ออะไรก็ได้ (อย่าลืม มีจุดต่อท้ายด้วย)
-            $model->file = $new_name; // บันทึกชื่อไฟล์ใหม่ที่กำหนด เก็บไว้ใน model
-            $model->create_username=Yii::app()->user->name;
-            $model->description=$des;//TODO(ziko):Should list all sheet that wan to upload
+            $modelUp->attributes=$_POST['Upload'];
+            $file=CUploadedFile::getInstance($modelUp,'file');
+            $fileNo=0;
+            switch ($des)
+                {
+                    case 'pr':
+                        $fileNo=0;
+                        break;
+                    case 'stpic':
+                        $fileNo=1;
+                        break;
+                    case 'otpic':
+                        $fileNo=2;
+                        break;
+                    case 'gen1':
+                        $fileNo=3;
+                        break;
+                    case 'gen2':
+                        $fileNo=4;
+                        break;
+                    case 'gen3':
+                        $fileNo=5;
+                        break;
+                    case 'rb1':
+                        $fileNo=6;
+                        break;
+                    case 'rb2':
+                        $fileNo=7;
+                        break;
+                    case 'rb3':
+                        $fileNo=8;
+                        break;
+                    case 'rb4':
+                        $fileNo=9;
+                        break;
+                    case 'nw1':
+                        $fileNo=10;
+                        break;
+                    case 'nw2':
+                        $fileNo=11;
+                        break;
+                    case 'nw3':
+                        $fileNo=12;
+                        break;
+                    case 'nw4':
+                        $fileNo=13;
+                        break;
+                    case 'stid':
+                        $fileNo=14;
+                        break;
+                    default:
+                        $fileNo=99;
+                        echo "error";
+                        break;
+                }
+            $new_name = Yii::app()->user->id.'_'.$fileNo.".".$file->getExtensionName(); // newname คือชื่อใหม่ เปลี่ยนเป็นชื่ออะไรก็ได้ (อย่าลืม มีจุดต่อท้ายด้วย)
+            $modelUp->file = $new_name; // บันทึกชื่อไฟล์ใหม่ที่กำหนด เก็บไว้ใน model
+            $modelUp->create_username=Yii::app()->user->id;
+            $modelUp->description=$des;//TODO(ziko):Should list all sheet that wan to upload
 
             if( $des=="pr"||
+            	$des=="stid"||
+            	$des=="gen1"||
+                $des=="gen2"||
+                $des=="gen3"||
+                $des=="stpic"||
+                $des=="otpic"||
                 $des=="rb1"||
                 $des=="rb2"||
                 $des=="rb3"||
@@ -211,42 +270,11 @@ class UploadController extends Controller
                 $des=="nw3"||
                 $des=="nw4"){
 
-                switch ($des)
-                {
-                    case 'pr':
-                        $model2->sheet_parent=$new_name;
-                        break;
-                    case 'rb1':
-                        $model2->sheet_rb1=$new_name;
-                        break;
-                    case 'rb2':
-                        $model2->sheet_rb2=$new_name;
-                        break;
-                    case 'rb3':
-                        $model2->sheet_rb3=$new_name;
-                        break;
-                    case 'rb4':
-                        $model2->sheet_rb4=$new_name;
-                        break;
-                    case 'nw1':
-                        $model2->sheet_nw1=$new_name;
-                        break;
-                    case 'nw2':
-                        $model2->sheet_nw2=$new_name;
-                        break;
-                    case 'nw3':
-                        $model2->sheet_nw3=$new_name;
-                        break;
-                    case 'nw4':
-                        $model2->sheet_nw4=$new_name;
-                        break;
-                    default:
-                        echo "error";
-                }
-                //$model2->repeatpassword=$model2->password;
-                /*if(!$model2->validate()){
+                
+                //$mUpload->repeatpassword=$mUpload->password;
+                /*if(!$mUpload->validate()){
                     $str="";
-                    foreach ($model2->getErrors() as $value) {
+                    foreach ($mUpload->getErrors() as $value) {
                         foreach ($value as $value2) {
                             $str=$str.$value2;
                         }
@@ -254,24 +282,75 @@ class UploadController extends Controller
                     throw new CHttpException(500,'User error'.$str);
                 }*/
 
-                if(!$model2->save(false,NULL))
-                    throw new CHttpException(405,'User profile error');
-
-                if($model->validate()){
+                
+                if($modelUp->validate()){
                     $uploaded = $file->saveAs($dir.'/'.$new_name);
                     $fileName = $new_name;
+                    
                 }else{
                     $str="";
-                    foreach ($model->getErrors() as $value) {
+                    foreach ($modelUp->getErrors() as $value) {
                         foreach ($value as $value2) {
                             $str=$str.$value2.", ";
                         }
                     }
-                    throw new CHttpException(405,'Upload error #'.$str." Back to do again.");
+                    throw new CHttpException(405,'Upload error #'.$str);
                 }
 
-                if($model->save()){     //เก็บข้อมูลลง Database
+                if($modelUp->save()){     //เก็บข้อมูลลง Database
+                    switch ($des)
+                    {   case 'pr':
+                            $mUpload->sheet_parent=$modelUp->id;
+                            break;
+                        case 'stpic':
+                            $mUpload->student_pic=$modelUp->id;
+                            break;
+                        case 'otpic':
+                            $mUpload->other_pic=$modelUp->id;
+                            break;
+                        case 'gen1':
+                            $mUpload->sheet_gen1=$modelUp->id;
+                            break;
+                        case 'gen2':
+                            $mUpload->sheet_gen2=$modelUp->id;
+                            break;
+                        case 'gen3':
+                            $mUpload->sheet_gen3=$modelUp->id;
+                            break;
+                        case 'rb1':
+                            $mUpload->sheet_rb1=$modelUp->id;
+                            break;
+                        case 'rb2':
+                            $mUpload->sheet_rb2=$modelUp->id;
+                            break;
+                        case 'rb3':
+                            $mUpload->sheet_rb3=$modelUp->id;
+                            break;
+                        case 'rb4':
+                            $mUpload->sheet_rb4=$modelUp->id;
+                            break;
+                        case 'nw1':
+                            $mUpload->sheet_nw1=$modelUp->id;
+                            break;
+                        case 'nw2':
+                            $mUpload->sheet_nw2=$modelUp->id;
+                            break;
+                        case 'nw3':
+                            $mUpload->sheet_nw3=$modelUp->id;
+                            break;
+                        case 'nw4':
+                            $mUpload->sheet_nw4=$modelUp->id;
+                            break;
+                        case 'stid':
+                            $mUpload->sheet_studentid=$modelUp->id;
+                            break;
+                        default:
+                            echo "error";
+                    }
+                    if(!$mUpload->save(false,NULL))
+                        throw new CHttpException(405,'User profile error');
                     $this->redirect(array('/user'));
+
                 }else{
                     throw new CHttpException(405,'File upload error');
                 }
@@ -286,7 +365,7 @@ class UploadController extends Controller
 
         }
         $this->render( 'photo', array(
-            'model' => $model,
+            'model' => $modelUp,
             'uploaded' => $uploaded,
             'dir' => $dir,//TODO(ziko):change this
             'fileName' => $fileName,

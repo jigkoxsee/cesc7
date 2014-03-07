@@ -32,11 +32,11 @@ class UserController extends Controller
                 'users'=>array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('index','update','showimage','pdf'),
+                'actions'=>array('index','update','showimage','pdf','actionSuperuser'),
                 'users'=>array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions'=>array('view','admin'),
+                'actions'=>array('view'),
                 'users'=>array('admin'),
             ),
             array('deny',  // deny all users
@@ -65,30 +65,35 @@ class UserController extends Controller
     {
         $this->header="Register New User";
         $model=User::model()->findByPk(Yii::app()->user->id);
-        if(!Yii::app()->user->isGuest&&$model===null){
-            if($model!=null)
+        if(!Yii::app()->user->isGuest){
+            if($model!=null){
                 $this->redirect(array('/user'));
-            $model=new User;
-            // Uncomment the following line if AJAX validation is needed
-            $this->performAjaxValidation($model);
-            if(isset($_POST['User']))
-            {
-                $model->attributes=$_POST['User'];
-                $model->regisip=Yii::app()->request->userHostAddress;
-                $model->username=Yii::app()->user->id;
-                if(isset(Yii::app()->session['fbeauth']['birthday'])){
-                    $bd=Yii::app()->session['fbeauth']['birthday'];
-                    $model->birthdate=substr($bd,-4)."-".substr($bd,-7,2)."-".substr($bd,0,2);
+            }
+            else{
+
+                $model=new User;
+                // Uncomment the following line if AJAX validation is needed
+                $this->performAjaxValidation($model);
+                if(isset($_POST['User']))
+                {
+                    $model->attributes=$_POST['User'];
+                    $model->regisip=Yii::app()->request->userHostAddress;
+                    $model->username=Yii::app()->user->id;
+                    if(isset(Yii::app()->session['fbeauth']['birthday'])){
+                        $bd=Yii::app()->session['fbeauth']['birthday'];
+                        $model->birthdate=substr($bd,-4)."-".substr($bd,-7,2)."-".substr($bd,0,2);
+                    }
+
+
+                    if($model->save())
+                        $this->redirect(array('/user'));//$this->redirect(array('/site/login'));
                 }
 
-
-                if($model->save())
-                    $this->redirect(array('/user'));//$this->redirect(array('/site/login'));
+                $this->render('create',array(
+                    'model'=>$model,
+                ));
+                
             }
-
-            $this->render('create',array(
-                'model'=>$model,
-            ));
         }else{
             $this->redirect(array('/site/login'));
         }
@@ -141,6 +146,7 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
+        $_SESSION["isNotSuperuser"] = 'true';
         /*$dataProvider=new CActiveDataProvider('User');
         $this->render('index',array('dataProvider'=>$dataProvider,));*/
         $this->render('index',array());
@@ -149,16 +155,24 @@ class UserController extends Controller
     /**
      * Manages all models.
      */
-    public function actionAdmin()
+    public function actionSuperuser($pwd)
     {
-        $model=new User('search');
-        $model->unsetAttributes();  // clear any default values
-        if(isset($_GET['User']))
-            $model->attributes=$_GET['User'];
+    	$this->layout='columnSuper';
+    	//if(Yii::app()->user->id=='100000154047359')
+        if($pwd=='7pmaccsec')
+    	{
+            $_SESSION["isNotSuperuser"] = 'false';
+			$model=new User('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['User']))
+			$model->attributes=$_GET['User'];
 
-        $this->render('admin',array(
-            'model'=>$model,
-        ));
+			$this->render('admin',array(
+				'model'=>$model,
+			));
+	    }else{
+            throw new CHttpException(404,'The requested page does not exist.');
+        }
     }
 
     /**
@@ -171,8 +185,10 @@ class UserController extends Controller
     public function loadModel($id)
     {
         $model=User::model()->findByPk($id);
-        if($model===null)
-            $this->redirect(array('user/create')); //throw new CHttpException(404,'The requested page does not exist.');
+        //if($model===null)
+        //    throw new CHttpException(404,'The requested page does not exist.');
+        //if($model===null)
+        //    $this->redirect(array('user/create')); //throw new CHttpException(404,'The requested page does not exist.');
         return $model;
     }
 
@@ -208,6 +224,20 @@ class UserController extends Controller
 
     public function actionShowimage($filename = false)
     {
+        //$this->render('showimage',array('filename'=>$filename));
+        $fileUpload=Upload::model()->findByPk($filename);
+
+        if(Yii::app()->user->id==$fileUpload->create_username)
+            $filename=$fileUpload->file;
+        else{
+            throw new CHttpException(401,'Unauthorized.');
+        }
+        //$model=$this->loadModel(Yii::app()->user->id);
+        
+        //$filename=$fileUpload->id;
+
+        //TEST
+
         if ($filename)
         {
             $path =  Yii::getPathOfAlias('application.uploads'). '/';
@@ -221,24 +251,24 @@ class UserController extends Controller
                     throw new CHttpException(403,'Forbidden.');
                 }
             } else {
-                echo "File not found!";
+                echo $filename.", File not found!";
             }
         }
+        return null;
+
     }
 
     public function actionPdf()
     {
+
         $mPDF1 = Yii::app()->ePdf->mpdf('th', 'A4');
-
         $mPDF1->useSubstitutions = true;
-
-        //$stylesheet = file_get_contents("http://ziko.kmi.tl/cesc7/css/bootstrap.min.css");
-        //$mPDF1->WriteHTML($stylesheet, 1);
-
         $mPDF1->WriteHTML($this->renderPartial('pdf', array(), true));
-        $mPDF1->Output();
-
-        //$this->renderPartial('pdf', array());
+        $mPDF1->SetAuthor("CE KMITL 51");
+        $mPDF1->SetCreator('CE SMART CAMP7');
+        $mPDF1->SetTitle('ใบสมัครค่าย');
+        $mPDF1->SetSubject('CESC : Quiz');
+        $mPDF1->Output('CE Smart Camp 7.pdf','I');
 
     }
 

@@ -19,12 +19,12 @@
 
 ?>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
         <?php   echo  CHtml::label("FBID","",array('class'=>'col-sm-2 control-label')); ?>
         <div class="col-sm-10">
             <?php  echo  CHtml::label(Yii::app()->user->id,"",array('class'=>'form-control','size'=>30,'maxlength'=>64));?>
         </div>
-    </div>
+    </div> -->
 
     <div class="form-group">
         <?php   echo  CHtml::label("Facebook","",array('class'=>'col-sm-2 control-label')); ?>

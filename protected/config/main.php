@@ -29,18 +29,24 @@ return array(
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
 		
-		'gii'=>array(
+		/*'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'masterkmi',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('161.246.5.237','::1'),
-		),
+		),*/
 		
 	),
 
 	// application components
 	'components'=>array(
         //ziko
+        /*'cache'=>array(
+				'class'=>'system.caching.CDbCache',
+				'connectionID'=>'db',
+				'autoCreateCacheTable'=>false,
+				'cacheTableName'=>'cache',
+		),*/
         'loid' => array(
             'class' => 'ext.lightopenid.loid',
         ),
@@ -107,10 +113,10 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=ziko',
+			'connectionString' => 'mysql:host=localhost;dbname=jirasak_camp7',
 			'emulatePrepare' => true,
-			'username' => 'ziko',
-			'password' => 'masterkmi',
+			'username' => 'jirasak_camp7',
+			'password' => '10882123',
 			'charset' => 'utf8',
 		),
 		
@@ -139,6 +145,6 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'ked.naja@gmail.com',
+		'adminEmail'=>'info@cesmartcamp.com',
 	),
 );

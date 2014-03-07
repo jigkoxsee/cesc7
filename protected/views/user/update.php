@@ -11,7 +11,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array();
-$this->header="Edit User #".Yii::app()->user->name;
+$this->header=Yii::app()->user->name;
 ?>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -7,7 +7,9 @@ and (max-width : 480px) {
 /* Smartphones (landscape) ----------- */
 @media only screen
 and (min-width : 321px) {
-	
+	.desktop {
+		display:none;
+	}
 
 }
  
@@ -66,6 +68,9 @@ and (orientation : portrait) {
 /* Desktops and laptops ----------- */
 @media only screen
 and (min-width : 1224px) {
+	.desktop {
+		display:block;
+	}
 	.mobile{
 		display:none;
 	}
@@ -74,6 +79,9 @@ and (min-width : 1224px) {
 /* Large screens ----------- */
 @media only screen
 and (min-width : 1824px) {
+	.desktop {
+		display:block;
+	}
 }
  
 /* iPhone 4 ----------- */
@@ -107,6 +115,7 @@ html,body{
  border-style:solid;
  border-color:black;
  box-shadow: 5px 5px 5px #888888;
+ border-radius:25px;
 }
 
 .navigation li{
@@ -120,13 +129,35 @@ html,body{
  -webkit-transition: all .1s ease-in-out;
  text-align:left;
  width:150px;
+ border-radius:25px;
 }
 
 .network {
-	
+	box-shadow: 5px 5px 5px #888888 !important;
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+}
+
+.network b:hover {
+	box-shadow: 1px 1px 1px #888888 !important;
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+}
+
+.robot b:hover {
+	box-shadow: 1px 1px 1px #888888 !important;
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
 }
 
 .robot {
+	box-shadow: 5px 5px 5px #888888 !important;
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
 }
 
 a {
@@ -137,6 +168,7 @@ a {
 	 border-style:solid !important;
 	 border-color:black !important;
 	 border-width: 5px !important;
+	 border-radius:25px;
 }
 
 li.active {
@@ -148,6 +180,7 @@ li.active {
   cursor:pointer;
   color:white;
   width:150px!important;
+  border-radius:25px;
 }
 
 #move { /*this change form navigaiton class*/
@@ -156,6 +189,7 @@ li.active {
   margin-left:1%;
   top:20px;
   background-color:white;
+   border-radius:25px;
 }
 
 .cescLogo{
@@ -170,11 +204,11 @@ li.active {
  z-index:9;
 }
 
-.slide{
+.slidePage{
  position: relative;
  background-attachment: fixed;
  width:100%;
- height:700px;
+ height:1000px;
  position:relative;
 }
 
@@ -199,10 +233,16 @@ li.active {
 /*==================================== Object CSS =====================================================================*/
 
 #marioIsland{
-	width: 65%;
-    z-index:1;
+	width: 50%;
+    z-index:0;
 	position:absolute;
 	left:10%;
+	
+	filter: blur(2px);
+    -webkit-filter: blur(2px);
+	-moz-filter: blur(2px);
+	-o-filter: blur(2px);
+	-ms-filter: blur(2px);
 }
 
 #cloudBack {
@@ -213,18 +253,20 @@ li.active {
 }
 
 #cloudFront {
-   left:50%;
+   left:40%;
    bottom:0px;
    width:50%;
 	z-index:2;
 	position:absolute;
+	
 }
 
 #logo {
 	position:absolute;
-	width:50%;
+	width:55%;
 	top : 10%;
-	left : 50%;
+	left : 45%;
+	z-index:1;
 }
 
 #wormIsland {
@@ -266,6 +308,12 @@ li.active {
 #openBox {
 	z-index:4;
 	position:absolute;
+	
+	filter: blur(2px);
+    -webkit-filter: blur(2px);
+	-moz-filter: blur(2px);
+	-o-filter: blur(2px);
+	-ms-filter: blur(2px);
 }
 
 #kirbyDoor  {
@@ -319,4 +367,76 @@ li.active {
     -o-transform: scale(-1, 1);
     -khtml-transform: scale(-1, 1);
     -ms-transform: scale(-1, 1);
+}
+
+/* Preloader */
+body {
+    overflow: hidden;
+}
+
+/* Preloader */
+
+#preloader {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:#a3d4f0; /* change if the mask should have another color then white */
+    z-index:99; /* makes sure it stays on top */
+}
+
+#status {
+    width:200px;
+    height:200px;
+    position:absolute;
+    left:50%; /* centers the loading animation horizontally one the screen */
+    top:50%; /* centers the loading animation vertically one the screen */
+    background-image:url(../img/status.gif); /* path to your loading animation */
+    background-repeat:no-repeat;
+    background-position:center;
+    margin:-100px 0 0 -100px; /* is width and height divided by two */
+}
+
+#text01,#text02,#text03 {
+	 text-shadow: 5px 5px 5px #888888;
+}
+
+#floorGround{
+  position:absolute;
+  background-image:url(../images/floor1.png);
+  background-size: 100% auto;
+  height:284px !important;
+  background-repeat: x-repeat;
+  bottom:0px;
+}
+
+#lean_overlay {
+    
+    position: absolute;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    display: none;
+}
+
+.masonry {
+  max-width: auto;
+}
+
+.masonry .item {
+	width:  110px;
+	height: 110px;
+	float: left;
+
+}
+
+.item.w7 { width: 14%; }
+.item.w4 { width: 25%;}
+
+.item.gigante {
+	width: 180px;
+	height: 180px;
 }

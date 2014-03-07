@@ -27,11 +27,6 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'facebook'); ?>
-		<?php echo $form->textArea($model,'facebook',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->label($model,'regisTime'); ?>
 		<?php echo $form->textField($model,'regisTime'); ?>
 	</div>

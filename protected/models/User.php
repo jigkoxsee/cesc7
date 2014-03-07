@@ -26,6 +26,9 @@
  * @property string $allergy_food
  * @property string $camp
  * @property string $sheet_parent
+ * @property string $sheet_gen1
+ * @property string $sheet_gen2
+ * @property string $sheet_gen3
  * @property string $sheet_rb1
  * @property string $sheet_rb2
  * @property string $sheet_rb3
@@ -34,6 +37,7 @@
  * @property string $sheet_nw2
  * @property string $sheet_nw3
  * @property string $sheet_nw4
+ * @property string $sheet_studentid
  * @property string $regisip
  * @property string $bloodtype
  * @property string $phone_mobile_network
@@ -53,6 +57,10 @@
  * @property string $camp3_uni
  * @property string $disease
  * @property string $thai_id
+ * @property string $student_pic
+ * @property string $other_pic
+ * @property integer $filestatus
+ * @property integer $istester
  *
  */
 class User extends CActiveRecord
@@ -137,9 +145,9 @@ class User extends CActiveRecord
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             //array('uid, username, password, email, regisTime, gender, surname, nickname, age, birthdate, address, phone_home, phone_mobile, school, branch, gpa, class, region, allergy, allergy_drug, allergy_food, camp', 'safe', 'on'=>'search'),
-            array('gpa,regisip,address, branch,allergy, allergy_drug, allergy_food, sheet_parent, sheet_rb1, sheet_rb2, sheet_rb3, sheet_rb4, sheet_nw1,
-            sheet_nw2,sheet_nw3, sheet_nw4, bloodtype,phone_mobile_network,address_province,address_postcode,talent,not_eat,parent_name,parent_relation,
-            parent_phone,school_province,camp1,camp1_uni,camp2,camp2_uni,camp3,camp3_uni,disease,thai_id', 'safe','on'=>'edit'),
+            array('gpa,regisip,address, branch,allergy, allergy_drug, allergy_food, sheet_parent,sheet_gen1,sheet_gen2,sheet_gen3, sheet_rb1, sheet_rb2, sheet_rb3, sheet_rb4, sheet_nw1,
+            sheet_nw2,sheet_nw3, sheet_nw4,sheet_studentid, bloodtype,phone_mobile_network,address_province,address_postcode,talent,not_eat,parent_name,parent_relation,
+            parent_phone,school_province,camp1,camp1_uni,camp2,camp2_uni,camp3,camp3_uni,disease,thai_id,other_pic,student_pic', 'safe','on'=>'edit'),
 
 			array('uid, username, password, email, regisTime, gender, surname, nickname, age, birthdate, address, phone_home, phone_mobile, school, branch, gpa,
 			class, region, allergy, allergy_drug, allergy_food, camp, sheet_parent, sheet_rb1, sheet_rb2, sheet_rb3, sheet_rb4, sheet_nw1, sheet_nw2, ' .
@@ -185,20 +193,24 @@ class User extends CActiveRecord
 			'allergy' => 'สิ่งที่แพ้',
 			'allergy_drug' => 'ยาที่แพ้',
 			'allergy_food' => 'อาหารที่แพ้',
-			'camp' => 'ค่ายย่อย',
-			'sheet_parent' => 'ใบขออนุญาติผู้ปกครอง',
-			'sheet_rb1' => 'คำถามโรบอท 1',
-			'sheet_rb2' => 'คำถามโรบอท 2',
-			'sheet_rb3' => 'คำถามโรบอท 3',
-			'sheet_rb4' => 'คำถามโรบอท 4',
-			'sheet_nw1' => 'คำถามเน็ตเวิร์ก 1',
-			'sheet_nw2' => 'คำถามเน็ตเวิร์ก 2',
-			'sheet_nw3' => 'คำถามเน็ตเวิร์ก 3',
-			'sheet_nw4' => 'คำถามเน็ตเวิร์ก 4',
+			'camp' => 'สาขาที่เลือกอบรม',
+			'sheet_parent' => 'ใบขออนุญาตผู้ปกครอง',
+			'sheet_gen1' => 'General Quiz หน้า 1',
+			'sheet_gen2' => 'General Quiz หน้า 2',
+			'sheet_gen3' => 'General Quiz หน้า 3',
+			'sheet_rb1' => 'Robot Quiz หน้า 1',
+			'sheet_rb2' => 'Robot Quiz หน้า 2',
+			'sheet_rb3' => 'Robot Quiz หน้า 3',
+			'sheet_rb4' => 'Robot Quiz หน้า 4',
+			'sheet_nw1' => 'Network Quiz หน้า 1',
+			'sheet_nw2' => 'Network Quiz หน้า 2',
+			'sheet_nw3' => 'Network Quiz หน้า 3',
+			'sheet_nw4' => 'Network Quiz หน้า 4',
+			'sheet_studentid' => 'สำเนาบัตรนักเรียน/ บัตรประชาชน',
             'verifyCode'=>'รหัสยืนยัน',
             'regisip'=>'Register IP',
             'bloodtype'=>'กรุ๊ปเลือด',
-            'phone_mobile_network'=>'เครื่อข่ายโทรศัพท์มือถือ',
+            'phone_mobile_network'=>'เครือข่ายโทรศัพท์มือถือ',
             'address_province'=>'จังหวัด',
             'address_postcode'=>'รหัสไปรษณีย์',
             'talent'=>'ความสามารถพิเศษ',
@@ -206,15 +218,18 @@ class User extends CActiveRecord
             'parent_name'=>'ชื่อ นามสกุล ผู้ปกครอง',
             'parent_relation'=>'ความเกี่ยวข้อง',
             'parent_phone'=>'เบอร์โทรศัพท์',
-            'school_province'=>'จังหวัด',
+            'school_province'=>'จังหวัด(โรงเรียน)',
             'camp1'=>'1.ค่าย',
-            'camp1_uni'=>'1.ค่ายของ ม.',
+            'camp1_uni'=>'  จัดโดย ม.',
             'camp2'=>'2.ค่าย',
-            'camp2_uni'=>'2.ค่ายของ ม.',
+            'camp2_uni'=>'  จัดโดย ม.',
             'camp3'=>'3.ค่าย',
-            'camp3_uni'=>'3.ค่ายของ ม.',
+            'camp3_uni'=>'  จัดโดย ม.',
             'disease'=>'โรคประจำตัว',
-            'thai_id'=>'เลขประจำตัวประชาชน'
+            'thai_id'=>'เลขประจำตัวประชาชน',
+            'other_pic'=>'รูปถ่ายไม่เป็นทางการ',
+            'filestatus'=>'สถานะการสมัคร',
+            'student_pic'=>'รูปนักเรียน 2 นิ้ว'
 		);
 	}
 
@@ -268,9 +283,19 @@ class User extends CActiveRecord
 		$criteria->compare('sheet_nw2',$this->sheet_nw2,true);
 		$criteria->compare('sheet_nw3',$this->sheet_nw3,true);
 		$criteria->compare('sheet_nw4',$this->sheet_nw4,true);*/
+		$criteria->condition = 'istester=:istester';
+		$criteria->params = array(':istester'=>0);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+
+			'sort'=>array(
+		        'defaultOrder'=>'uid DESC',
+		    ),
+		    'pagination'=>array(
+		        'pageSize'=>'50'
+		    ),
+
 		));
 	}
 

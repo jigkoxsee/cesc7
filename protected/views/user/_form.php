@@ -18,7 +18,7 @@
 
         <?php
         $camp=$model->camp;
-        if($camp==0){
+        if($camp=="Robot"){
             echo "<h1>ค่าย Robot</h1>";
         }else{
             echo "<h1>ค่าย Network</h1>";
@@ -28,19 +28,19 @@
         <?php echo $form->error($model,'camp'); ?>
 
     </div>
-
+<hr/>
     <?php echo $form->errorSummary($model); ?>
 
     <div class="form-group">
-        <h3>ข้อมูลส่วนตัว</h3>
+        <h3 style="margin-left:15px;">ข้อมูลส่วนตัว</h3>
     </div>
 
-    <div class="form-group">
-        <?php echo  CHtml::label("Facebook","",array('class'=>'col-sm-3 control-label')); ?>
+    <!--<div class="form-group">
+        <?php /*echo  CHtml::label("Facebook","",array('class'=>'col-sm-3 control-label'));*/ ?>
         <div class="col-sm-8">
-            <?php  echo  CHtml::label(Yii::app()->user->name,"",array('class'=>'form-control','size'=>60,'maxlength'=>100));?>
+            <?php /* echo  CHtml::label(Yii::app()->user->name,"",array('class'=>'form-control','size'=>60,'maxlength'=>100));*/?>
         </div>
-    </div>
+    </div>-->
 
     <?php /*
     <div class="form-group">

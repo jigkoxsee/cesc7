@@ -4,14 +4,34 @@ var dotTemp = 1;
 var checkFace = 1;
 var dotTextTemp = "begin";
 jQuery(document).ready(function ($) {
+
+     $("#trigger_id").click(function (e) {
+	     e.preventDefault();
+	     $("#trigger_id").leanModal({ top : 200, closeButton: ".modal_close" });
+	  });
+	
 		//slide show
-		$(document).ready(function(){
-			  $('.slider1').bxSlider({
-				slideWidth: 800,
-				minSlides: 2,
-				maxSlides: 4
-			  });
-			});
+	
+     $('#spon').bjqs({
+        'height' : 320,
+        'width' : 600,
+		'animtype' : 'slide',
+		'showmarkers' : false,
+        'responsive' : true,
+		nexttext : '<b style = "font-size:40px;color:black;background-color:white;" >&nbsp ></b>', // Text for 'next' button (can use HTML)
+		prevtext : '<b style = "font-size:40px;color:black;background-color:white;" >< &nbsp</b>'
+    });	
+		
+    $('#slideShow').bjqs({
+        'height' : 320,
+        'width' : 600,
+		'animtype' : 'slide',
+		'showmarkers' : false,
+        'responsive' : true,
+		nexttext : '<b style = "font-size:40px;color:black;background-color:white;" >&nbsp ></b>', // Text for 'next' button (can use HTML)
+		prevtext : '<b style = "font-size:40px;color:black;background-color:white;" >< &nbsp</b>'
+    });
+		
 
 		var window_width = $(window).height() - $('#move').height();
 		var document_height = $(document).height() - $(window).height();
@@ -22,6 +42,7 @@ jQuery(document).ready(function ($) {
 				var object_position_left = window_width * (scroll_position / document_height);
 				$('#move').css({
 					'top': object_position_left
+					//'top': 50 px
 				});
 			});
 		});
@@ -35,7 +56,7 @@ jQuery(document).ready(function ($) {
           
 		  var links = $('.navigation').find('li');
 		  var linksMobile = $('#nav').find('a');
-		  slide = $('.slide');
+		  slide = $('.slidePage');
 		  button = $('.button');
 		  mywindow = $(window);
 		  htmlbody = $('html,body');
@@ -70,14 +91,14 @@ jQuery(document).ready(function ($) {
 		  
 		  function goToScroll(dataslide) {
 			htmlbody.animate({
-			  scrollTop: $('.slide[data-slide="'+dataslide+'"]').offset().top 
+			  scrollTop: $('.slidePage[data-slide="'+dataslide+'"]').offset().top 
 			}, 1000, 'easeInOutQuint');
 			
 		  }
 		  
 		  function goToScrollUp(dataslide) {
 			htmlbody.animate({
-			  scrollTop: $('.slide[data-slide="'+dataslide+'"]').offset().top-1 
+			  scrollTop: $('.slidePage[data-slide="'+dataslide+'"]').offset().top-1 
 			}, 1000, 'easeInOutQuint');
 			
 		  }
@@ -114,8 +135,8 @@ jQuery(document).ready(function ($) {
 				if (window.addEventListener) window.addEventListener('DOMMouseScroll', wheel, false);
 			window.onmousewheel = document.onmousewheel = wheel;
 
-			var time = 1000;
-			var distance = 200;
+			var time = 400;
+			var distance = 100;
 
 			function wheel(event) {
 				if (event.wheelDelta) delta = event.wheelDelta / 120;
@@ -200,6 +221,9 @@ jQuery(document).ready(function ($) {
 		$(".dotText").hide();
 		$(".point").hide();
 		$( "#dot1Text" ).toggle( "slow" );
+		$('#text01').animate({'font-size':'30px'},300);
+		$('#text02').animate({'font-size':'20px'},300);
+		$('#text03').animate({'font-size':'20px'},300);
 	   dotTemp = 1;
 		
   });
@@ -222,6 +246,9 @@ jQuery(document).ready(function ($) {
 		$(".dotText").hide();
 		$(".point").hide();
 		$( "#dot2Text" ).toggle( "slow" );
+		$('#text02').animate({'font-size':'30px'},300);
+		$('#text01').animate({'font-size':'20px'},300);
+		$('#text03').animate({'font-size':'20px'},300);
 		dotTemp = 2;
   });
   $('#dot3').click(function (e) {
@@ -243,6 +270,9 @@ jQuery(document).ready(function ($) {
 		$(".dotText").hide();
 		$(".point").hide();
 		$( "#dot3Text" ).toggle( "slow" );
+		$('#text03').animate({'font-size':'30px'},300);
+		$('#text02').animate({'font-size':'20px'},300);
+		$('#text01').animate({'font-size':'20px'},300);
 		dotTemp = 3;
   });
 });

@@ -44,13 +44,15 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'id'=>'user-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
+	'enableSorting'=>'true',
 	'columns'=>array(
 		'uid',
-		'username',
-		//'password',
-		'email',
-		'facebook',
-		'regisTime',
+		//'username',
+		'nickname',
+        'gender',
+		//'regisTime',
+		'class',
+		'camp',
 		/*
 		'gender',
 		'surname',
@@ -68,7 +70,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'allergy',
 		'allergy_drug',
 		'allergy_food',*/
-		'camp',
 
 		array(
 			'class'=>'CButtonColumn',
